@@ -2,29 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>WU Binghong</title>
   <style>
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
     body {
       background-color: #e8f5e9; /* soft green */
       font-family: Verdana, sans-serif;
       margin: 0;
-      padding: 1rem;
+      padding: 0;
       color: #2c3e50;
     }
     .container {
       max-width: 700px;
       margin: auto;
-      padding: 0 1rem;
+      padding: 1rem;
     }
     h1 {
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: #0d0760;
       word-break: break-word;
+      margin-bottom: 1rem;
     }
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       color: #0d0760;
+      margin-top: 1.5rem;
     }
     a {
       color: #0d0760;
@@ -34,7 +42,7 @@
       text-decoration: underline;
     }
     p {
-      font-size: 1.1rem;
+      font-size: 1rem;
       line-height: 1.6;
       word-wrap: break-word;
     }
@@ -47,7 +55,7 @@
     .links {
       display: flex;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.75rem;
       align-items: center;
     }
     .links a {
@@ -68,6 +76,17 @@
     .paper-title {
       font-weight: bold;
       color: #0d0760;
+    }
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+      p, a {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
