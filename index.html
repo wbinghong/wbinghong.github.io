@@ -1,90 +1,102 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binghong / something related</title>
-    <style>
-        /* Style for the entire page */
-        body {
-            /* Setting the default font to Verdana for English text, and adjusting font size */
-            font-family: Verdana, sans-serif;
-            font-size: 12px;
-            /* Setting the background image and its properties */
-            background: url('background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-            color: #333; /* Default text color */
-        }
-
-        /* Style for the header section containing the name */
-        .header {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            /* Increasing font size for better visibility */
-            font-size: 32px;
-            /* Setting font to SimSun (宋体) for Chinese characters */
-            font-family: 'NSimSun', '宋体', serif;
-            color: orange; /* Initial color of the name */
-            cursor: pointer;
-            padding: 10px; /* Padding to make it easier to hover over */
-        }
-
-        /* Change color of the header on hover */
-        .header:hover {
-            color: yellowgreen;
-        }
-
-        /* Style for the navigation panel that appears on hover */
-        .nav {
-            display: none; /* Initially hidden */
-            position: absolute;
-            top: 50px; /* Adjusted to make detection area better */
-            left: 0;
-            width: 200px; /* Expanded width for better hover detection */
-            background: transparent; /* Semi-transparent white background */
-            padding: 20px 10px 10px 10px; /* Padding for better layout */
-            
-            font-family: Verdana, sans-serif;
-            font-size: 10px; /* Reduced font size for a compact look */
-        }
-
-        /* Style for each navigation link */
-        .nav a {
-            display: block;
-            margin: 5px 0;
-            padding: 3px;
-            text-decoration: none;
-            color: #333; /* Link color */
-        }
-
-        /* Display navigation menu when hovering over the header or navigation itself */
-        .header:hover .nav,
-        .nav:hover {
-            display: block;
-        }
-
-        /* Keep the color of the header yellow when hovering over navigation */
-        .header:hover, .header + .nav:hover {
-            color: yellow;
-            display: block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WUBinghong</title>
+  <style>
+    body {
+      background-color: #e8f5e9; /* soft green */
+      font-family: Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      color: #2c3e50;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #0d0760;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: #0d0760;
+    }
+    a {
+      color: #0d0760;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .highlight {
+      font-weight: bold;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .links a {
+      margin-right: 10px;
+    }
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #ccc;
+      margin: 2rem 0;
+    }
+    .paper-entry {
+      margin-bottom: 1.2rem;
+    }
+    .paper-entry i {
+      font-style: italic;
+    }
+    .paper-title {
+      font-weight: bold;
+      color: #0d0760;
+    }
+  </style>
 </head>
 <body>
-    <!-- Header with name and navigation menu -->
-    <div class="header">
-        伍柄虹 / WU Binghong
-        <div class="nav">
-            <a href="me.html">Me</a>
-            <a href="publication.html">Publication</a>
-            <a href="teaching.html">Teaching</a>
-            <a href="talk.html">Talk</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
-        </div>
+  <div class="container">
+    <h1>WU Binghong</h1>
+    <div class="section">
+      <p>
+        <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a><br/>
+        <a href="https://www.cuhk.edu.hk/chinese/index.html">Chinese University of Hong Kong</a><br/>
+        wubh [at] link [dot] cuhk [dot] edu [dot] hk
+      </p>
     </div>
+
+    <div class="section">
+      <h2>👋 你好,</h2>
+      <p>
+        I’m currently a Ph.D. student in the Department of Information Engineering at the Chinese University of Hong Kong. I'm supervised by <a href="https://sites.google.com/site/pascalvontobel/">Prof. Pascal O. Vontobel</a>. 
+        I'm currently interested in <span class="highlight">asymptotic analysis</span> of various problems, with a primary focus on the Bethe approximation of the matrix permanent.
+      </p>
+      <p>
+        Previously I obtained two bachelor’s degrees: one in Communication Engineering at <a href="https://www.uestc.edu.cn/">UESTC</a>, and one in Electrical and Electronic Engineering at <a href="https://www.gla.ac.uk/">UofG</a>, both in 2024. I was also awarded the <span class="highlight">National Scholarship</span> for the academic year 2022–2023.
+      </p>
+    </div>
+
+    <div class="section links">
+      <h2>Links:</h2>
+      <a href="https://www.linkedin.com/in/binghong-wu-pupu/">LinkedIn</a>
+      <a href="https://github.com/Rmcher">GitHub</a>
+      <!-- <a href="#">Google Scholar</a> -->
+    </div>
+
+    <hr/>
+
+    <!-- <div class="section">
+    </div> -->
+
+    
+  </div>
 </body>
 </html>
