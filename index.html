@@ -67,65 +67,102 @@
         background-color: #ccc;
         margin: 2rem 0;
     }
-    .paper-entry {
-        margin-bottom: 1.2rem;
+    
+    /* --- 新增：Publications 列表样式 --- */
+    .publications-list {
+        list-style-type: disc; /* 圆点列表符，与参考图一致 */
+        padding-left: 20px;
+        margin-top: 1rem;
     }
-    .paper-entry i {
-        font-style: italic;
+    .publications-list li {
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
     }
-    .paper-title {
+    .pub-title {
+        font-size: 1.1rem;
         font-weight: bold;
-        color: #0d0760;
+        color: #0d0760; 
     }
+    .pub-authors {
+        font-style: italic; /* 作者斜体，与参考图一致 */
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+    }
+    .pub-venue-links {
+        font-size: 0.95rem;
+    }
+    .arxiv-link {
+        transition: all 0.2s ease-in-out;
+        padding: 0 2px;
+    }
+    .arxiv-link:hover {
+        color: #ffffff;
+        background-color: #b31b1b;
+        border-radius: 3px;
+        text-decoration: none;
+}
+    /* ----------------------------------- */
+
     @media screen and (max-width: 480px) {
         h1 {
             font-size: 1.5rem;
-      }
+        }
         h2 {
             font-size: 1.1rem;
-      }
-        p, a {
+        }
+        p, a, .pub-venue-links {
             font-size: 0.95rem;
-      }
+        }
+        .pub-title {
+            font-size: 1rem;
+        }
     }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>WU Binghong</h1>
+        
         <div class="section">
-        <p>
-            <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a><br/>
-            <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a><br/>
-            wubh [at] link [dot] cuhk [dot] edu [dot] hk
-        </p>
-    </div>
+            <p>
+                <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a><br/>
+                <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a><br/>
+                wubh [at] link [dot] cuhk [dot] edu [dot] hk
+            </p>
+        </div>
 
-    <div class="section">
-        <h2>👋 你好,</h2>
-        <p>
-            I’m currently a second-year Ph.D. candidate in the <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a> at <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a>. I'm supervised by <a href="https://sites.google.com/site/pascalvontobel/">Prof. Pascal O. Vontobel</a>. 
-            My current research interest is the application of graphical models and factor graphs to a wide range of information processing problems.
-        </p>
-        <p>
-            Before I join The Chinese University of Hong Kong, I received one Bachelor's degree in Communication Engineering from <a href="https://www.uestc.edu.cn/">UESTC</a> and the other Bachelor's degree in Electrical and Electronic Engineering from <a href="https://www.gla.ac.uk/">UofG</a>, both in 2024. I was also awarded the National Scholarship for the academic year 2022–2023.
-        </p>
-    </div>
+        <div class="section">
+            <h2>👋 你好,</h2>
+            <p>
+                I’m currently a second-year Ph.D. candidate in the <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a> at <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a>. I'm supervised by <a href="https://sites.google.com/site/pascalvontobel/">Prof. Pascal O. Vontobel</a>. 
+                My current research interest is the application of graphical models and factor graphs to a wide range of information processing problems.
+            </p>
+            <p>
+                Before I join The Chinese University of Hong Kong, I received one Bachelor's degree in Communication Engineering from <a href="https://www.uestc.edu.cn/">UESTC</a> and the other Bachelor's degree in Electrical and Electronic Engineering from <a href="https://www.gla.ac.uk/">UofG</a>, both in 2024. I was also awarded the National Scholarship for the academic year 2022–2023.
+            </p>
+        </div>
 
-    <div class="section">
-        <h2>Links:</h2>
-        <p>
-            <a href="https://www.linkedin.com/in/binghong-wu-pupu/">LinkedIn</a> |
-            <a href="https://github.com/Rmcher">GitHub</a>
-            <!-- | <a href="#">Google Scholar</a> -->
-        </p>
-    </div>
+        <div class="section">
+            <h2>Links</h2>
+            <p>
+                <a href="https://www.linkedin.com/in/binghong-wu-pupu/">LinkedIn</a> |
+                <a href="https://github.com/Rmcher">GitHub</a>
+                </p>
+        </div>
 
-    <hr/>
+        <hr/>
 
-    <!-- <div class="section">
-    </div> -->
-
-  </div>
+        <div class="section">
+    <h2>Publications</h2>
+    <ul class="publications-list">
+        <li>
+            <div class="pub-title">Double-Cover-Based Analysis of the Bethe Permanent of Block-Structured Positive Matrices</div>
+            <div class="pub-authors"><b>Binghong Wu</b> and Pascal O. Vontobel</div>
+            <div class="pub-venue-links">
+                <span style="color: #0d0760;">ISIT 2026</span> (<span style="color: #999999; cursor: default;">doi</span>, <a href="https://arxiv.org/abs/2601.17508" class="arxiv-link">arXiv</a>)
+            </div>
+        </li>
+    </ul>
+</div>
 </body>
 </html>
