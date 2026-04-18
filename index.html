@@ -68,9 +68,8 @@
         margin: 2rem 0;
     }
     
-    /* --- 新增：Publications 列表样式 --- */
     .publications-list {
-        list-style-type: disc; /* 圆点列表符，与参考图一致 */
+        list-style-type: disc;
         padding-left: 20px;
         margin-top: 1rem;
     }
@@ -84,7 +83,7 @@
         color: #0d0760; 
     }
     .pub-authors {
-        font-style: italic; /* 作者斜体，与参考图一致 */
+        font-style: italic;
         margin-top: 0.2rem;
         margin-bottom: 0.2rem;
     }
@@ -100,7 +99,17 @@
         background-color: #b31b1b;
         border-radius: 3px;
         text-decoration: none;
-}
+    }
+    .conference-link {
+        transition: all 0.2s ease-in-out;
+        padding: 0 2px;
+    }
+    .conference-link:hover {
+        color: #ffffff;
+        background-color: #0d0760;
+        border-radius: 3px;
+        text-decoration: none;
+    }
     /* ----------------------------------- */
 
     @media screen and (max-width: 480px) {
@@ -146,7 +155,7 @@
             <h2>Links</h2>
             <p>
                 <a href="https://www.linkedin.com/in/binghong-wu-pupu/">LinkedIn</a> |
-                <a href="https://github.com/Rmcher">GitHub</a>
+                <a href="https://github.com/wbinghong">GitHub</a>
                 </p>
         </div>
 
@@ -159,7 +168,7 @@
             <div class="pub-title">Double-Cover-Based Analysis of the Bethe Permanent of Block-Structured Positive Matrices</div>
             <div class="pub-authors"><b>Binghong Wu</b> and Pascal O. Vontobel</div>
             <div class="pub-venue-links">
-                <span style="color: #0d0760;">ISIT 2026</span> (<span style="color: #999999; cursor: default;">doi</span>, <a href="https://arxiv.org/abs/2601.17508" class="arxiv-link">arXiv</a>)
+                <a href="https://2026.ieee-isit.org/" class="conference-link">ISIT 2026</a> (<span style="color: #999999; cursor: default;">doi</span>, <a href="https://arxiv.org/abs/2601.17508" class="arxiv-link">arXiv</a>)
             </div>
         </li>
     </ul>
