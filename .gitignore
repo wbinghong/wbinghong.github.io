@@ -1,0 +1,8 @@
+# Claude Code (machine-specific config, tokens, sessions)
+.claude/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db

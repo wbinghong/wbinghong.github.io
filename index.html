@@ -11,47 +11,88 @@
     *, *:before, *:after {
         box-sizing: inherit;
     }
+
     body {
-        background-color: #e8f5e9; /* soft green */
+        background-color: #e8f5e9;
         font-family: Verdana, sans-serif;
         margin: 0;
         padding: 0;
-        color: #2c3e50;
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        color: #2d2d2d;
+        border-top: 3px solid #1a4a3c;
+        -webkit-text-size-adjust: 100%;
     }
+
     .container {
-        max-width: 700px;
-        margin: auto;
-        padding: 1rem;
+        max-width: 720px;
+        margin: 2.5rem auto;
+        padding: 2.2rem;
+        background: #ffffff;
+        border-radius: 6px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     }
+
     h1 {
         font-size: 2rem;
-        color: #0d0760;
+        color: #1a4a3c;
         word-break: break-word;
-        margin-bottom: 1rem;
+        margin-bottom: 0.6rem;
     }
+
+    .tagline {
+        font-size: 0.9rem;
+        color: #7a9a8a;
+        margin-bottom: 1.2rem;
+        letter-spacing: 0.02em;
+    }
+
     h2 {
-        font-size: 1.25rem;
-        color: #0d0760;
-        margin-top: 1.5rem;
+        font-size: 1.2rem;
+        color: #1a4a3c;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
     }
+
     a {
-        color: #0d0760;
+        color: #1a4a3c;
         text-decoration: none;
+        transition: color 0.15s ease, background-color 0.15s ease;
     }
     a:hover {
+        color: #2d7a5f;
         text-decoration: underline;
     }
+
     p {
         font-size: 1rem;
-        line-height: 1.6;
+        line-height: 1.7;
         word-wrap: break-word;
+        margin-top: 0;
     }
+
     .highlight {
         font-weight: bold;
     }
+
     .section {
         margin-bottom: 2rem;
     }
+
+    .affiliation {
+        line-height: 1.7;
+    }
+
+    .email {
+        display: inline-block;
+        font-family: Verdana;
+        font-size: 0.85rem;
+        background: #f0f4f2;
+        color: #6b7b73;
+        padding: 0.15rem 0.55rem;
+        border-radius: 3px;
+        margin-top: 0.3rem;
+    }
+
     .links {
         display: flex;
         flex-wrap: wrap;
@@ -61,35 +102,47 @@
     .links a {
         margin: 0;
     }
+
     hr {
         border: none;
         height: 1px;
-        background-color: #ccc;
+        background-color: #d8e2dc;
         margin: 2rem 0;
     }
-    
+
+    /* Publications */
     .publications-list {
-        list-style-type: disc;
-        padding-left: 20px;
-        margin-top: 1rem;
+        list-style: none;
+        padding-left: 0;
+        margin-top: 0.75rem;
     }
-    .publications-list li {
-        margin-bottom: 1.5rem;
-        line-height: 1.5;
+    .publication-item {
+        background: #f8faf9;
+        border-left: 3px solid #1a4a3c;
+        padding: 0.9rem 1.1rem;
+        margin-bottom: 0.75rem;
+        border-radius: 0 4px 4px 0;
+        transition: background 0.2s ease, border-left-color 0.2s ease;
+    }
+    .publication-item:hover {
+        background: #f0f4f2;
+        border-left-color: #2d7a5f;
     }
     .pub-title {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         font-weight: bold;
-        color: #0d0760; 
+        color: #1a4a3c;
     }
     .pub-authors {
         font-style: italic;
-        margin-top: 0.2rem;
-        margin-bottom: 0.2rem;
-    }
-    .pub-venue-links {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
         font-size: 0.95rem;
     }
+    .pub-venue-links {
+        font-size: 0.9rem;
+    }
+
     .arxiv-link {
         transition: all 0.2s ease-in-out;
         padding: 0 2px;
@@ -106,13 +159,30 @@
     }
     .conference-link:hover {
         color: #ffffff;
-        background-color: #0d0760;
+        background-color: #1a4a3c;
         border-radius: 3px;
         text-decoration: none;
     }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 1.5rem 1rem 2rem;
+        color: #8aa898;
+        font-size: 0.78rem;
+    }
+
     /* ----------------------------------- */
 
-    @media screen and (max-width: 480px) {
+    @media screen and (max-width: 600px) {
+        body {
+            border-top-width: 2px;
+        }
+        .container {
+            margin: 0.75rem;
+            padding: 1.25rem;
+            border-radius: 4px;
+        }
         h1 {
             font-size: 1.5rem;
         }
@@ -125,53 +195,65 @@
         .pub-title {
             font-size: 1rem;
         }
+        .tagline {
+            font-size: 0.85rem;
+        }
+        .publication-item {
+            padding: 0.75rem 0.9rem;
+        }
     }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>WU Binghong</h1>
-        
+        <div class="tagline">Probabilistic Graphical Models &middot; Information Theory &middot; Quantum Information Processing</div>
+
         <div class="section">
-            <p>
+            <p class="affiliation">
                 <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a><br/>
-                <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a><br/>
-                wubh [at] link [dot] cuhk [dot] edu [dot] hk
+                <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a>
             </p>
+            <p><span class="email">wubh [at] link [dot] cuhk [dot] edu [dot] hk</span></p>
         </div>
 
         <div class="section">
-            <h2>👋 你好,</h2>
+            <h2>About</h2>
             <p>
-                I’m currently a second-year Ph.D. candidate in the <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a> at <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a>. I'm supervised by <a href="https://sites.google.com/site/pascalvontobel/">Prof. Pascal O. Vontobel</a>. 
+                I'm currently a second-year Ph.D. candidate in the <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a> at <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a>. I'm supervised by <a href="https://sites.google.com/site/pascalvontobel/">Prof. Pascal O. Vontobel</a>.
                 My current research interest is the application of graphical models and factor graphs to a wide range of information processing problems.
             </p>
             <p>
-                Before I join The Chinese University of Hong Kong, I received one Bachelor's degree in Communication Engineering from <a href="https://www.uestc.edu.cn/">UESTC</a> and the other Bachelor's degree in Electrical and Electronic Engineering from <a href="https://www.gla.ac.uk/">UofG</a>, both in 2024. I was also awarded the National Scholarship for the academic year 2022–2023.
+                Before joining The Chinese University of Hong Kong, I received one Bachelor's degree in Communication Engineering from <a href="https://www.uestc.edu.cn/">UESTC</a> and the other Bachelor's degree in Electrical and Electronic Engineering from <a href="https://www.gla.ac.uk/">UofG</a>, both in 2024. I was also awarded the National Scholarship for the academic year 2022–2023.
             </p>
         </div>
 
         <div class="section">
             <h2>Links</h2>
             <p>
-                <a href="https://www.linkedin.com/in/binghong-wu-pupu/">LinkedIn</a> |
+                <a href="https://www.linkedin.com/in/binghong-wu-pupu/">LinkedIn</a> &nbsp;|&nbsp;
                 <a href="https://github.com/wbinghong">GitHub</a>
-                </p>
+            </p>
         </div>
 
         <hr/>
 
         <div class="section">
-    <h2>Publications</h2>
-    <ul class="publications-list">
-        <li>
-            <div class="pub-title">Double-Cover-Based Analysis of the Bethe Permanent of Block-Structured Positive Matrices</div>
-            <div class="pub-authors"><b>Binghong Wu</b> and Pascal O. Vontobel</div>
-            <div class="pub-venue-links">
-                <a href="https://2026.ieee-isit.org/" class="conference-link">ISIT 2026</a> (<span style="color: #999999; cursor: default;">doi</span>, <a href="https://arxiv.org/abs/2601.17508" class="arxiv-link">arXiv</a>)
-            </div>
-        </li>
-    </ul>
-</div>
+            <h2>Publications</h2>
+            <ul class="publications-list">
+                <li class="publication-item">
+                    <div class="pub-title">Double-Cover-Based Analysis of the Bethe Permanent of Block-Structured Positive Matrices</div>
+                    <div class="pub-authors"><b>Binghong Wu</b> and Pascal O. Vontobel</div>
+                    <div class="pub-venue-links">
+                        <a href="https://2026.ieee-isit.org/" class="conference-link">ISIT 2026</a> (<span style="color: #999999; cursor: default;">doi</span>, <a href="https://arxiv.org/abs/2601.17508" class="arxiv-link">arXiv</a>)
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024&ndash;2026 WU Binghong. All rights reserved.
+    </footer>
 </body>
 </html>
