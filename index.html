@@ -2,258 +2,580 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>WU Binghong</title>
     <style>
+    :root {
+        --ink: #f5f7f4;
+        --ink-muted: rgba(245, 247, 244, 0.78);
+        --ink-soft: rgba(245, 247, 244, 0.62);
+        --line: rgba(245, 247, 244, 0.24);
+        --dark: #080d10;
+        --dark-soft: rgba(8, 13, 16, 0.68);
+        --accent: #d9e7e2;
+        --content-max: 760px;
+    }
+
     html {
         box-sizing: border-box;
+        min-height: 100%;
+        background: var(--dark);
     }
-    *, *:before, *:after {
+
+    *, *::before, *::after {
         box-sizing: inherit;
     }
 
     body {
-        background-color: #e8f5e9;
-        font-family: Verdana, sans-serif;
+        min-height: 100%;
         margin: 0;
-        padding: 0;
-        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-        color: #2d2d2d;
-        border-top: 3px solid #1a4a3c;
+        color: var(--ink);
+        font-family: Verdana, Geneva, sans-serif;
+        background:
+            radial-gradient(circle at 77% 36%, rgba(194, 163, 112, 0.16), transparent 26%),
+            radial-gradient(circle at 12% 84%, rgba(105, 143, 151, 0.17), transparent 30%),
+            linear-gradient(135deg, #06090c 0%, #0c1417 48%, #11100d 100%);
+        -webkit-font-smoothing: antialiased;
         -webkit-text-size-adjust: 100%;
     }
 
-    .container {
-        max-width: 720px;
-        margin: 2.5rem auto;
-        padding: 2.2rem;
-        background: #ffffff;
-        border-radius: 6px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    body::before {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        content: "";
+        background:
+            linear-gradient(90deg, rgba(3, 8, 12, 0.72) 0%, rgba(3, 8, 12, 0.38) 58%, rgba(3, 8, 12, 0.58) 100%),
+            linear-gradient(0deg, rgba(3, 8, 12, 0.42) 0%, rgba(3, 8, 12, 0.02) 52%, rgba(255, 255, 255, 0.04) 100%);
+        pointer-events: none;
     }
 
-    h1 {
-        font-size: 2rem;
-        color: #1a4a3c;
-        word-break: break-word;
-        margin-bottom: 0.6rem;
-    }
-
-    .tagline {
-        font-size: 0.9rem;
-        color: #7a9a8a;
-        margin-bottom: 1.2rem;
-        letter-spacing: 0.02em;
-    }
-
-    h2 {
-        font-size: 1.2rem;
-        color: #1a4a3c;
-        margin-top: 2rem;
-        margin-bottom: 0.75rem;
+    body::after {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        content: "";
+        background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        background-size: 100% 72px;
+        opacity: 0.46;
+        pointer-events: none;
     }
 
     a {
-        color: #1a4a3c;
+        color: inherit;
         text-decoration: none;
-        transition: color 0.15s ease, background-color 0.15s ease;
     }
+
     a:hover {
-        color: #2d7a5f;
-        text-decoration: underline;
+        color: #ffffff;
     }
 
-    p {
-        font-size: 1rem;
-        line-height: 1.7;
-        word-wrap: break-word;
-        margin-top: 0;
+    .site {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        padding: max(32px, env(safe-area-inset-top)) max(32px, env(safe-area-inset-right)) max(96px, env(safe-area-inset-bottom)) max(32px, env(safe-area-inset-left));
     }
 
-    .highlight {
-        font-weight: bold;
+    .view {
+        display: none;
     }
 
-    .section {
-        margin-bottom: 2rem;
+    .view.is-active {
+        display: block;
+    }
+
+    .home {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 390px);
+        gap: clamp(36px, 5vw, 72px);
+        align-items: end;
+        min-height: calc(100vh - 128px);
+        padding: clamp(28px, 6vh, 76px) clamp(24px, 5vw, 76px) clamp(78px, 12vh, 138px);
+    }
+
+    .home.is-active {
+        display: grid;
+    }
+
+    .home:not(.is-active) {
+        display: none;
+    }
+
+    .home-panel {
+        width: 100%;
+        max-width: var(--content-max);
+        min-width: 0;
+    }
+
+    .about {
+        max-width: 690px;
+        margin: 0 0 24px;
+        color: var(--ink-muted);
+        font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+        line-height: 1.65;
+    }
+
+    .about p {
+        margin: 0 0 0.78rem;
+    }
+
+    .about p:last-child {
+        margin-bottom: 0;
+    }
+
+    .about a,
+    .publication-body a {
+        border-bottom: 1px solid rgba(245, 247, 244, 0.34);
+        transition: border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .about a:hover,
+    .publication-body a:hover {
+        border-color: rgba(255, 255, 255, 0.78);
+    }
+
+    h1 {
+        margin: 0 0 16px;
+        color: #ffffff;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3.3rem, 7vw, 6.8rem);
+        font-weight: 500;
+        line-height: 0.9;
+        letter-spacing: 0;
     }
 
     .affiliation {
-        line-height: 1.7;
+        margin: 0;
+        color: var(--ink-muted);
+        font-size: clamp(0.95rem, 1.2vw, 1.12rem);
+        line-height: 1.65;
+    }
+
+    .affiliation a {
+        color: var(--ink);
     }
 
     .email {
         display: inline-block;
-        font-family: Verdana;
-        font-size: 0.85rem;
-        background: #f0f4f2;
-        color: #6b7b73;
-        padding: 0.15rem 0.55rem;
-        border-radius: 3px;
-        margin-top: 0.3rem;
+        margin-top: 10px;
+        color: var(--ink-soft);
+        font-size: clamp(0.9rem, 1.05vw, 1rem);
+        letter-spacing: 0;
     }
 
-    .links {
+    .social-links {
         display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        align-items: center;
+        gap: 18px;
+        margin-top: 18px;
+        color: var(--ink-soft);
+        font-size: 0.92rem;
     }
-    .links a {
+
+    .portrait-wrap {
+        justify-self: end;
+        width: 100%;
+        min-width: 280px;
+        margin-bottom: clamp(8px, 3vh, 34px);
+    }
+
+    .portrait-frame {
+        position: relative;
+        overflow: hidden;
         margin: 0;
+        aspect-ratio: 460 / 527;
+        border: 1px solid rgba(245, 247, 244, 0.26);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.03);
+        box-shadow: 0 24px 72px rgba(0, 0, 0, 0.34);
     }
 
-    hr {
-        border: none;
-        height: 1px;
-        background-color: #d8e2dc;
-        margin: 2rem 0;
+    .portrait-frame::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background:
+            linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 28%),
+            linear-gradient(0deg, rgba(3, 8, 12, 0.16), transparent 42%);
+        pointer-events: none;
     }
 
-    /* Publications */
-    .publications-list {
-        list-style: none;
-        padding-left: 0;
-        margin-top: 0.75rem;
-    }
-    .publication-item {
-        background: #f8faf9;
-        border-left: 3px solid #1a4a3c;
-        padding: 0.9rem 1.1rem;
-        margin-bottom: 0.75rem;
-        border-radius: 0 4px 4px 0;
-        transition: background 0.2s ease, border-left-color 0.2s ease;
-    }
-    .publication-item:hover {
-        background: #f0f4f2;
-        border-left-color: #2d7a5f;
-    }
-    .pub-title {
-        font-size: 1.05rem;
-        font-weight: bold;
-        color: #1a4a3c;
-    }
-    .pub-authors {
-        font-style: italic;
-        margin-top: 0.25rem;
-        margin-bottom: 0.25rem;
-        font-size: 0.95rem;
-    }
-    .pub-venue-links {
-        font-size: 0.9rem;
+    .portrait-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
-    .arxiv-link {
-        transition: all 0.2s ease-in-out;
-        padding: 0 2px;
-    }
-    .arxiv-link:hover {
-        color: #ffffff;
-        background-color: #b31b1b;
-        border-radius: 3px;
-        text-decoration: none;
-    }
-    .conference-link {
-        transition: all 0.2s ease-in-out;
-        padding: 0 2px;
-    }
-    .conference-link:hover {
-        color: #ffffff;
-        background-color: #1a4a3c;
-        border-radius: 3px;
-        text-decoration: none;
+    .portrait-caption {
+        margin: 13px 0 0;
+        color: var(--ink-soft);
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+        text-align: right;
+        text-transform: uppercase;
     }
 
-    /* Footer */
-    footer {
-        text-align: center;
-        padding: 1.5rem 1rem 2rem;
-        color: #8aa898;
+    .page-view {
+        width: min(980px, calc(100vw - 64px));
+        margin: 0 auto;
+        padding-top: clamp(60px, 10vh, 110px);
+    }
+
+    .page-kicker {
+        margin: 0 0 14px;
+        color: var(--ink-soft);
         font-size: 0.78rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
     }
 
-    /* ----------------------------------- */
+    h2 {
+        margin: 0 0 42px;
+        color: #ffffff;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2.8rem, 6vw, 5.4rem);
+        font-weight: 500;
+        line-height: 0.95;
+        letter-spacing: 0;
+    }
 
-    @media screen and (max-width: 600px) {
-        body {
-            border-top-width: 2px;
+    .publication-list {
+        display: grid;
+        gap: 0;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-top: 1px solid var(--line);
+    }
+
+    .publication-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 28px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .publication-title {
+        margin: 0 0 12px;
+        color: #ffffff;
+        font-size: clamp(1.18rem, 2vw, 1.72rem);
+        font-weight: 500;
+        line-height: 1.32;
+    }
+
+    .publication-meta {
+        margin: 0;
+        color: var(--ink-muted);
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .publication-links {
+        display: flex;
+        gap: 16px;
+        align-items: start;
+        padding-top: 3px;
+        color: var(--ink-muted);
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .publication-links a,
+    .publication-links span {
+        border-bottom: 1px solid rgba(245, 247, 244, 0.32);
+    }
+
+    .publication-links span {
+        color: rgba(245, 247, 244, 0.38);
+    }
+
+    .bottom-nav {
+        position: fixed;
+        left: 50%;
+        bottom: max(28px, env(safe-area-inset-bottom));
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(38px, 8vw, 104px);
+        width: min(560px, calc(100vw - 48px));
+        transform: translateX(-50%);
+        color: var(--ink-soft);
+        font-size: 0.88rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    .bottom-veil {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 8;
+        height: 168px;
+        background: linear-gradient(0deg, rgba(8, 13, 16, 0.96) 0%, rgba(8, 13, 16, 0.74) 38%, rgba(8, 13, 16, 0) 100%);
+        pointer-events: none;
+    }
+
+    .nav-link {
+        position: relative;
+        min-width: 128px;
+        padding: 8px 0;
+        border: 0;
+        color: inherit;
+        background: transparent;
+        font: inherit;
+        text-align: center;
+        cursor: pointer;
+        transition: color 0.18s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.is-active {
+        color: #ffffff;
+    }
+
+    .nav-link::after {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        content: "";
+        background: rgba(255, 255, 255, 0.72);
+        transform: translateX(-50%);
+        transition: width 0.18s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.is-active::after {
+        width: 42px;
+    }
+
+    .copyright {
+        position: fixed;
+        right: max(24px, env(safe-area-inset-right));
+        bottom: max(29px, env(safe-area-inset-bottom));
+        z-index: 9;
+        margin: 0;
+        color: rgba(245, 247, 244, 0.34);
+        font-size: 0.72rem;
+    }
+
+    @media (max-width: 920px) {
+        .home {
+            grid-template-columns: 1fr;
+            align-items: start;
+            padding-left: clamp(24px, 7vw, 52px);
+            padding-right: clamp(24px, 7vw, 52px);
         }
-        .container {
-            margin: 0.75rem;
-            padding: 1.25rem;
-            border-radius: 4px;
+
+        .home-panel {
+            width: min(640px, calc(100vw - 48px));
+            min-width: 0;
+            order: 2;
         }
-        h1 {
-            font-size: 1.5rem;
+
+        .portrait-wrap {
+            justify-self: start;
+            order: 1;
+            width: min(44vw, 260px);
+            min-width: 190px;
+            margin-bottom: 8px;
         }
-        h2 {
-            font-size: 1.1rem;
+
+        .portrait-caption {
+            text-align: left;
         }
-        p, a, .pub-venue-links {
-            font-size: 0.95rem;
-        }
-        .pub-title {
-            font-size: 1rem;
-        }
-        .tagline {
-            font-size: 0.85rem;
-        }
+
         .publication-item {
-            padding: 0.75rem 0.9rem;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .publication-links {
+            flex-wrap: wrap;
+        }
+
+        .copyright {
+            display: none;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .site {
+            padding: 24px 22px 156px;
+        }
+
+        .home {
+            min-height: calc(100vh - 130px);
+            gap: 24px;
+            padding: 32px 0 132px;
+        }
+
+        .home-panel {
+            width: 100%;
+        }
+
+        .portrait-wrap {
+            width: min(46vw, 190px);
+            min-width: 152px;
+        }
+
+        .about {
+            max-width: 100%;
+            margin-bottom: 24px;
+            font-size: 0.88rem;
+            line-height: 1.56;
+        }
+
+        .about p + p {
+            display: none;
+        }
+
+        h1 {
+            font-size: clamp(2.85rem, 13.5vw, 4rem);
+        }
+
+        .affiliation {
+            font-size: 0.92rem;
+        }
+
+        .page-view {
+            width: 100%;
+            padding-top: 42px;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            font-size: clamp(2.6rem, 13vw, 4rem);
+        }
+
+        .publication-item {
+            padding: 22px 0;
+        }
+
+        .publication-title {
+            font-size: 1.15rem;
+        }
+
+        .bottom-nav {
+            bottom: max(18px, env(safe-area-inset-bottom));
+            gap: 14px;
+            width: calc(100vw - 24px);
+            font-size: 0.74rem;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-link {
+            min-width: 112px;
+        }
+
+        .bottom-veil {
+            height: 128px;
+            background: linear-gradient(0deg, rgba(8, 13, 16, 0.96) 0%, rgba(8, 13, 16, 0.66) 48%, rgba(8, 13, 16, 0) 100%);
         }
     }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>WU Binghong</h1>
-        <div class="tagline">Probabilistic Graphical Models &middot; Information Theory &middot; Quantum Information Processing</div>
+    <main class="site">
+        <section class="view home is-active" id="home-view" data-view="home" aria-label="Home">
+            <div class="home-panel">
+                <div class="about" aria-label="About">
+                    <p>
+                        I'm currently a second-year Ph.D. candidate in the <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a> at <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a>, supervised by <a href="https://sites.google.com/site/pascalvontobel/">Prof. Pascal O. Vontobel</a>. My research interests include graphical models, factor graphs, information theory, and quantum information processing.
+                    </p>
+                    <p>
+                        Before joining CUHK, I received one Bachelor's degree in Communication Engineering from <a href="https://www.uestc.edu.cn/">UESTC</a> and another Bachelor's degree in Electrical and Electronic Engineering from <a href="https://www.gla.ac.uk/">UofG</a>, both in 2024. I was also awarded the National Scholarship for the academic year 2022&ndash;2023.
+                    </p>
+                </div>
 
-        <div class="section">
-            <p class="affiliation">
-                <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a><br/>
-                <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a>
-            </p>
-            <p><span class="email">wubh [at] link [dot] cuhk [dot] edu [dot] hk</span></p>
-        </div>
+                <h1>WU Binghong</h1>
 
-        <div class="section">
-            <h2>About</h2>
-            <p>
-                I'm currently a second-year Ph.D. candidate in the <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a> at <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a>. I'm supervised by <a href="https://sites.google.com/site/pascalvontobel/">Prof. Pascal O. Vontobel</a>.
-                My current research interest is the application of graphical models and factor graphs to a wide range of information processing problems.
-            </p>
-            <p>
-                Before joining The Chinese University of Hong Kong, I received one Bachelor's degree in Communication Engineering from <a href="https://www.uestc.edu.cn/">UESTC</a> and the other Bachelor's degree in Electrical and Electronic Engineering from <a href="https://www.gla.ac.uk/">UofG</a>, both in 2024. I was also awarded the National Scholarship for the academic year 2022–2023.
-            </p>
-        </div>
+                <p class="affiliation">
+                    <a href="https://www.ie.cuhk.edu.hk/">Department of Information Engineering</a><br />
+                    <a href="https://www.cuhk.edu.hk/chinese/index.html">The Chinese University of Hong Kong</a>
+                </p>
+                <a class="email" href="mailto:wubh@link.cuhk.edu.hk">wubh [at] link [dot] cuhk [dot] edu [dot] hk</a>
 
-        <div class="section">
-            <h2>Links</h2>
-            <p>
-                <a href="https://www.linkedin.com/in/binghong-wu-pupu/">LinkedIn</a> &nbsp;|&nbsp;
-                <a href="https://github.com/wbinghong">GitHub</a>
-            </p>
-        </div>
+                <div class="social-links" aria-label="External links">
+                    <a href="https://www.linkedin.com/in/binghong-wu-pupu/">LinkedIn</a>
+                    <a href="https://github.com/wbinghong">GitHub</a>
+                </div>
+            </div>
 
-        <hr/>
+            <aside class="portrait-wrap" aria-label="Portrait">
+                <figure class="portrait-frame">
+                    <img src="punk_zoomin.jpg" alt="Portrait of WU Binghong" />
+                </figure>
+                <p class="portrait-caption">Portrait</p>
+            </aside>
+        </section>
 
-        <div class="section">
+        <section class="view page-view" id="publications-view" data-view="publications" aria-label="Publications">
+            <p class="page-kicker">Selected Work</p>
             <h2>Publications</h2>
-            <ul class="publications-list">
+
+            <ol class="publication-list">
                 <li class="publication-item">
-                    <div class="pub-title">Double-Cover-Based Analysis of the Bethe Permanent of Block-Structured Positive Matrices</div>
-                    <div class="pub-authors"><b>Binghong Wu</b> and Pascal O. Vontobel</div>
-                    <div class="pub-venue-links">
-                        <a href="https://2026.ieee-isit.org/" class="conference-link">ISIT 2026</a> (<span style="color: #999999; cursor: default;">doi</span>, <a href="https://arxiv.org/abs/2601.17508" class="arxiv-link">arXiv</a>)
+                    <div class="publication-body">
+                        <h3 class="publication-title">Double-Cover-Based Analysis of the Bethe Permanent of Block-Structured Positive Matrices</h3>
+                        <p class="publication-meta"><strong>Binghong Wu</strong> and Pascal O. Vontobel</p>
+                        <p class="publication-meta">IEEE International Symposium on Information Theory (ISIT), 2026.</p>
+                    </div>
+                    <div class="publication-links" aria-label="Publication links">
+                        <a href="https://2026.ieee-isit.org/">ISIT 2026</a>
+                        <a href="https://arxiv.org/abs/2601.17508">arXiv</a>
+                        <span>doi</span>
                     </div>
                 </li>
-            </ul>
-        </div>
-    </div>
+            </ol>
+        </section>
+    </main>
 
-    <footer>
-        &copy; 2024&ndash;2026 WU Binghong. All rights reserved.
-    </footer>
+    <div class="bottom-veil" aria-hidden="true"></div>
+
+    <nav class="bottom-nav" aria-label="Primary navigation">
+        <button class="nav-link is-active" type="button" data-target="home">Home</button>
+        <button class="nav-link" type="button" data-target="publications">Publication</button>
+    </nav>
+
+    <p class="copyright">&copy; 2024&ndash;2026 WU Binghong</p>
+
+    <script>
+    const views = Array.from(document.querySelectorAll(".view"));
+    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+
+    function setActiveView(name, updateHash = true) {
+        views.forEach((view) => {
+            view.classList.toggle("is-active", view.dataset.view === name);
+        });
+
+        navLinks.forEach((link) => {
+            link.classList.toggle("is-active", link.dataset.target === name);
+        });
+
+        document.title = name === "publications" ? "Publications | WU Binghong" : "WU Binghong";
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+        if (updateHash) {
+            history.replaceState(null, "", name === "home" ? window.location.pathname : `#${name}`);
+        }
+    }
+
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => setActiveView(link.dataset.target));
+    });
+
+    window.addEventListener("hashchange", () => {
+        const view = window.location.hash.replace("#", "") || "home";
+        setActiveView(view === "publications" ? "publications" : "home", false);
+    });
+
+    setActiveView(window.location.hash === "#publications" ? "publications" : "home", false);
+    </script>
 </body>
 </html>
